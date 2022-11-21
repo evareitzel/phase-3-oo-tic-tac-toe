@@ -1,7 +1,6 @@
 require 'pry'
 
 class TicTacToe
-  # attr_accessor = #:b1, :b2, :b3, :b4, :b5, :b6, :b7, :b8, :b9 
 
   def initialize
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -23,7 +22,7 @@ class TicTacToe
   end
 
   def move(position, str)
-    # input_to_index(position)
+    # input_to_index(position) # not doing anything, throwing off turn method
     # @turns += 1
     @board[position] = str
   end
@@ -48,13 +47,12 @@ class TicTacToe
     puts "Please enter a number between 1 and 9!"
     input = gets.strip
     index = input_to_index(input)
-    binding.pry
     if valid_move?(index)
       x = current_player
       move(index, x)
       display_board
     else
-      turn
+      turn # recursion - method calling itself inside itself
     end
   end
 
